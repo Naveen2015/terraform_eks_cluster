@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.9.3"
+  required_version = "~> 1.14.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -7,11 +7,12 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "dev-naveen-tf-bucket"
-    region         = "us-east-1"
-    key            = "eks/terraform.tfstate"
-    dynamodb_table = "Lock-Files"
-    encrypt        = true
+    bucket = "dev-naveen-tf-bucket"
+    region = "us-east-1"
+    key    = "eks/terraform.tfstate"
+    //dynamodb_table = "Lock-Files"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 
